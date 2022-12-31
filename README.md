@@ -2,4 +2,4 @@
     Churchill
 </h1>
 
-Video conference application using Golang and Pion. 
+Video conference application using **Golang**, **JavaScript**, and **Pion**. 

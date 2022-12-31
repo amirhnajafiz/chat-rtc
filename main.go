@@ -1,7 +1,7 @@
 package main
 
-// main
-// function of the Churchill application.
+// main function of Churchill application.
+// in this function we start the application using cobra.
 func main() {
 
 }
