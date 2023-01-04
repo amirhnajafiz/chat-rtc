@@ -36,16 +36,19 @@ func Run() error {
 	app.Use(logger.New())
 	app.Use(cors.New())
 
-	app.Get("/", handlers.Welcome)
-	app.Get("/room/create", handlers.RoomCreate)
-	app.Get("/room/:uuid", handlers.Room)
-	app.Get("/room/:uuid/websocket", websocket.New(handlers.RoomWebsocket, websocket.Config{
+	// creating a new handler
+	h := handlers.Handler{}
+
+	app.Get("/", h.Welcome)
+	app.Get("/room/create", h.RoomCreate)
+	app.Get("/room/:uuid", h.Room)
+	app.Get("/room/:uuid/websocket", websocket.New(h.RoomWebsocket, websocket.Config{
 		HandshakeTimeout: 10 * time.Second,
 	}))
-	app.Get("/room/:uuid/chat", handlers.RoomChat)
-	app.Get("/room/:uuid/chat/websocket", websocket.New(handlers.RoomChatWebsocket))
-	app.Get("/room/:uuid/viewer/websocket", websocket.New(handlers.RoomViewerWebsocket))
-	app.Get("/stream/:ssuid", handlers.Stream)
+	app.Get("/room/:uuid/chat", h.RoomChat)
+	app.Get("/room/:uuid/chat/websocket", websocket.New(h.RoomChatWebsocket))
+	app.Get("/room/:uuid/viewer/websocket", websocket.New(h.RoomViewerWebsocket))
+	app.Get("/stream/:ssuid", h.Stream)
 	app.Get("/stream/:ssuid/websocket")
 	app.Get("/stream/:ssuid/chat/websocket")
 	app.Get("/stream/:ssuid/viewer/websocket")

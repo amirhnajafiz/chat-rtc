@@ -5,6 +5,6 @@ import (
 )
 
 // Welcome will render the welcome page template.
-func Welcome(c *fiber.Ctx) error {
+func (h *Handler) Welcome(c *fiber.Ctx) error {
 	return c.Render("welcome", nil, "layouts/main")
 }
