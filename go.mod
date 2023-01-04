@@ -13,6 +13,7 @@ require (
 	github.com/gofiber/fiber v1.13.3 // indirect
 	github.com/gofiber/utils v0.0.9 // indirect
 	github.com/gofiber/websocket v0.5.1 // indirect
+	github.com/google/uuid v1.3.0 // indirect
 	github.com/gorilla/schema v1.1.0 // indirect
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
 	github.com/klauspost/compress v1.15.9 // indirect
