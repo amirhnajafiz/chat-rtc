@@ -63,10 +63,12 @@ func Run() error {
 	go dispatchKeyFrames()
 
 	if *cert != "" {
-
+		return app.ListenTLS(*addr, *cert, *key)
 	}
 
-	func dispatchKeyFrames() {
-		room.Peers.DispatchKeyFrame()
-	}
+	return app.Listen(*addr)
+}
+
+func dispatchKeyFrames() {
+	room.Peers.DispatchKeyFrame()
 }
