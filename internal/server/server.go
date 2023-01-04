@@ -14,7 +14,7 @@ import (
 )
 
 var (
-	addr = flag.String("address", os.Getenv("PORT"), "")
+	addr = flag.String("address", ":"+os.Getenv("PORT"), "")
 	cert = flag.String("cert", "", "")
 	key  = flag.String("key", "", "")
 )
@@ -49,7 +49,24 @@ func Run() error {
 	app.Get("/room/:uuid/chat/websocket", websocket.New(h.RoomChatWebsocket))
 	app.Get("/room/:uuid/viewer/websocket", websocket.New(h.RoomViewerWebsocket))
 	app.Get("/stream/:ssuid", h.Stream)
-	app.Get("/stream/:ssuid/websocket")
-	app.Get("/stream/:ssuid/chat/websocket")
-	app.Get("/stream/:ssuid/viewer/websocket")
+	app.Get("/stream/:ssuid/websocket", websocket.New(h.StreamWebsocket, websocket.Config{
+		HandshakeTimeout: 10 * time.Second,
+	}))
+	app.Get("/stream/:ssuid/chat/websocket", websocket.New(h.StreamChatWebsocket))
+	app.Get("/stream/:ssuid/viewer/websocket", websocket.New(h.StreamViewerWebsocket))
+
+	app.Static("/", "./assets")
+
+	w.Rooms = make(map[string]*w.Room)
+	w.Streams = make(map[string]*w.Room)
+
+	go dispatchKeyFrames()
+
+	if *cert != "" {
+
+	}
+
+	func dispatchKeyFrames() {
+		room.Peers.DispatchKeyFrame()
+	}
 }
