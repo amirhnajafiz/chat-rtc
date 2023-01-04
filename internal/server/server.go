@@ -10,7 +10,7 @@ import (
 	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/gofiber/fiber/v2/middleware/logger"
 	"github.com/gofiber/template/html"
-	"github.com/gofiber/websocket"
+	"github.com/gofiber/websocket/v2"
 )
 
 var (

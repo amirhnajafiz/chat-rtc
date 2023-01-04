@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/gofiber/fiber/v2"
-	"github.com/gofiber/websocket"
+	"github.com/gofiber/websocket/v2"
 	"github.com/google/uuid"
 )
 
