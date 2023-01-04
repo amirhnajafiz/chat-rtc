@@ -13,12 +13,12 @@ func (h *Handler) RoomCreate(c *fiber.Ctx) error {
 	return c.Redirect(fmt.Sprintf("/room/%s", uuid.New().String()))
 }
 
-// RoomWebsocket .
+// RoomWebsocket creates or gets a room.
 func (h *Handler) RoomWebsocket(c *websocket.Conn) {
 	id := c.Params("uuid")
 	if id == "" {
 		return
 	}
 
-	createOrGetRoom(id)
+	_, _, room := createOrGetRoom(id)
 }
