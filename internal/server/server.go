@@ -70,5 +70,9 @@ func Run() error {
 }
 
 func dispatchKeyFrames() {
-	room.Peers.DispatchKeyFrame()
+	for range time.NewTicker(3 * time.Second).C {
+		for _, room := range w.Rooms {
+			room.Peers.DispatchKeyFrame()
+		}
+	}
 }
