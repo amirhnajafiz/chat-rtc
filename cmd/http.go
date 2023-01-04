@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/amirhnajafiz/churchill/internal/server"
 	"log"
 
 	"github.com/spf13/cobra"
@@ -19,4 +20,9 @@ func (h HTTP) Command() *cobra.Command {
 // main is the main function of HTTP.
 func (h HTTP) main() {
 	log.Println("http server started")
+
+	// start http server
+	if err := server.Run(); err != nil {
+		panic(err)
+	}
 }
