@@ -1,7 +1,16 @@
 package chat
 
 import (
-	"github.com/gofiber/websocket/v2"
+	"time"
+
+	"github.com/fasthttp/websocket"
+)
+
+const (
+	writeWait      = 10 * time.Second
+	pongWait       = 60 * time.Second
+	pingPeriod     = (pongWait * 9) / 10
+	maxMessageSize = 512
 )
 
 type Client struct {
