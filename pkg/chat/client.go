@@ -18,3 +18,15 @@ type Client struct {
 	Conn *websocket.Conn
 	Send chan []byte
 }
+
+func (c *Client) readPump() {
+
+}
+
+func (c *Client) writePump() {
+
+}
+
+func PeerChatConn() {
+
+}
