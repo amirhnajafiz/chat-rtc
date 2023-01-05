@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
+	w "github.com/amirhnajafiz/churchill/pkg/webrtc"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/websocket/v2"
 	"github.com/google/uuid"
@@ -32,8 +33,22 @@ func (h *Handler) RoomWebsocket(c *websocket.Conn) {
 	}
 
 	_, _, room := createOrGetRoom(id)
+	w.RoomConn(c, room.Peers)
 }
 
 func createOrGetRoom(uuid string) (string, string, Room) {
 
+}
+
+func (h *Handler) RoomViewerWebsocket(c *websocket.Conn) {
+
+}
+
+func roomViewerConn(c *websocket.Conn, p *w.Peers) {
+
+}
+
+type websocketMessage struct {
+	Event string `json:"event"`
+	Data  string `json:"data"`
 }
