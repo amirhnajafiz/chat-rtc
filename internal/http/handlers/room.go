@@ -36,7 +36,7 @@ func (h *Handler) RoomWebsocket(c *websocket.Conn) {
 	w.RoomConn(c, room.Peers)
 }
 
-func createOrGetRoom(uuid string) (string, string, Room) {
+func createOrGetRoom(uuid string) (string, string, w.Room) {
 
 }
 
