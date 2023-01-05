@@ -1,9 +1,14 @@
 package webrtc
 
-import "sync"
+import (
+	"sync"
+
+	"github.com/amirhnajafiz/churchill/pkg/chat"
+)
 
 type Room struct {
-	Peers Peers
+	Peers *Peers
+	Hub   *chat.Hub
 }
 
 type Peers struct {
