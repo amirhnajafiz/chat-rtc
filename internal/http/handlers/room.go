@@ -15,6 +15,7 @@ func (h *Handler) RoomCreate(c *fiber.Ctx) error {
 	return c.Redirect(fmt.Sprintf("/room/%s", uuid.New().String()))
 }
 
+// Room creates or gets a new room by getting room id from user request.
 func (h *Handler) Room(c *fiber.Ctx) error {
 	id := c.Params("uuid")
 	if id == "" {
@@ -36,10 +37,12 @@ func (h *Handler) RoomWebsocket(c *websocket.Conn) {
 	w.RoomConn(c, room.Peers)
 }
 
+// createOrGetRoom generates a new room.
 func createOrGetRoom(uuid string) (string, string, w.Room) {
 
 }
 
+// RoomViewerWebsocket returns room websocket.
 func (h *Handler) RoomViewerWebsocket(c *websocket.Conn) {
 
 }
