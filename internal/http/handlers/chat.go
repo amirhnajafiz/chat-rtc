@@ -10,6 +10,13 @@ func (h *Handler) RoomChat(c *fiber.Ctx) error {
 }
 
 func (h *Handler) RoomChatWebsocket(c *websocket.Conn) {
+	uuid := c.Params("uuid")
+	if uuid == "" {
+		return
+	}
+
+	w.RoomsLock.Lock()
+	room := w.Rooms(uuid)
 
 }
 
