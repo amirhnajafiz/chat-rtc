@@ -22,6 +22,7 @@ func New() {
 
 	r.Use(static.Serve("/", static.LocalFile("./public", true)))
 	r.GET("/ws", h.OpenSocket)
+	r.GET("/healthz", h.Health)
 
 	if err := r.Run(":5000"); err != nil {
 		panic(err)
