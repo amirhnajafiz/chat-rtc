@@ -1,7 +1,9 @@
 package main
 
-import "github.com/amirhnajafiz/chat-rtc/internal"
+import (
+	"github.com/amirhnajafiz/chat-rtc/internal/app"
+)
 
 func main() {
-	internal.Start()
+	app.New()
 }
