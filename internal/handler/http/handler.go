@@ -1,6 +1,8 @@
 package http
 
 import (
+	"net/http"
+
 	"github.com/amirhnajafiz/chat-rtc/internal/handler/socket"
 	"github.com/gin-gonic/gin"
 )
@@ -10,7 +12,7 @@ type Handler struct {
 }
 
 func (h *Handler) Health(c *gin.Context) {
-	_ = c.String("OK")	
+	c.String(http.StatusOK, "OK")
 }
 
 func (h *Handler) OpenSocket(c *gin.Context) {
