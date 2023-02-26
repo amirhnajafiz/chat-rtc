@@ -1,48 +1,54 @@
 <h1 align="center">
-  Chat RTC
+    Chat RTC
 </h1>
 
 <br />
 
-Real time server for chatting with Golang. It is a real time service which
-broadcasts the events between clients.
+In this project we are going to use ```fiber``` websockets and Golang
+```channels``` to create a Real Time Server in order to make
+a Real Time Communication system.
 
 <br />
 
-## HTTP
+## What is RTC?
 
-For ```HTTP``` handler we use golang gin. Handler will get user requests on ```/ws```
-and sets the configurations needed in order to connect with ```melody``` websocket handler.
+Real-Time Communication (RTC) is a 
+development platform for delivering 
+real-time audio and video content, or
+any kind of media around the world.
 
-## Web Socket
+## Connections
 
-For web sockets we use [```melody```](https://github.com/olahol/melody). Melody implements
-the real time handlers so we can make connection between our clients.
+Each user connects to server by calling ```/ws``` endpoint
+to create a websocket. After that each data is being processed 
+by our rtc server.
 
-## Start App
+<br />
 
-Build the app using:
+<div align="center">
+    <img src="./assets/schema.png" alt="schema" width="500" />
+</div>
 
-```
+<br />
+
+## Run
+
+In order to start application you can use in terminal build
+commands or Docker.
+
+### In terminal
+
+```shell
 go build -o main
-```
-
-Run the app on port ```5000```:
-
-```
-./main
+chmod +x ./main
+./main --port 8080
 ```
 
 ### Docker
 
-```Dockerfile
-
-```
-
 ```shell
-docker build . -t rtc-server
+docker build . --build-args PORT=8080 -t chat-rtc:v0.1
+docker run -d -it --port 8080:8080 char-rtc:v0.1
 ```
 
-```shell
-docker run -d -it -p 5000:5000 rtc-server
-```
+In your browser open ```localhost:8080```.
