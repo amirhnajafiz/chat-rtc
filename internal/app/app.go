@@ -15,6 +15,8 @@ func New() {
 		Channel: make(chan protocol.Packet),
 	}
 
+	app.Static("/", "./public")
+
 	app.Get("/ws", websocket.New(handler.Websocket))
 	app.Get("/hlz", handler.Health)
 
