@@ -1,12 +1,13 @@
 package http
 
 import (
-	"github.com/gofiber/websocket/v2"
 	"log"
 	"net/http"
 
 	"github.com/amirhnajafiz/chat-rtc/internal/handler/socket"
+	"github.com/amirhnajafiz/chat-rtc/internal/protocol"
 	"github.com/gin-gonic/gin"
+	"github.com/gofiber/websocket/v2"
 )
 
 type Handler struct {
@@ -23,7 +24,9 @@ func (h *Handler) OpenSocket(c *gin.Context) {
 	}
 }
 
-type HandlerV2 struct{}
+type HandlerV2 struct {
+	Channel chan protocol.Packet
+}
 
 func (h *HandlerV2) Websocket(c *websocket.Conn) {
 	var (
