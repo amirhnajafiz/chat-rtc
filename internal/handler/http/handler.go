@@ -5,6 +5,7 @@ import (
 	"net/http"
 
 	"github.com/amirhnajafiz/chat-rtc/internal/protocol"
+
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/websocket/v2"
 )
