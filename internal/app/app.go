@@ -16,6 +16,7 @@ func New() {
 	}
 
 	app.Get("/ws", websocket.New(handler.Websocket))
+	app.Get("/hlz", handler.Health)
 
 	if err := app.Listen(":5001"); err != nil {
 		panic(err)

@@ -2,13 +2,19 @@ package http
 
 import (
 	"log"
+	"net/http"
 
 	"github.com/amirhnajafiz/chat-rtc/internal/protocol"
+	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/websocket/v2"
 )
 
 type Handler struct {
 	Channel chan protocol.Packet
+}
+
+func (h *Handler) Health(c *fiber.Ctx) error {
+	return c.SendStatus(http.StatusOK)
 }
 
 func (h *Handler) Websocket(c *websocket.Conn) {
