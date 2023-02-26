@@ -1,4 +1,4 @@
-package app
+package internal
 
 import (
 	"github.com/amirhnajafiz/chat-rtc/internal/handler/http"
@@ -8,7 +8,7 @@ import (
 	"github.com/gofiber/websocket/v2"
 )
 
-func New() {
+func NewApp() {
 	app := fiber.New()
 
 	handler := http.Handler{

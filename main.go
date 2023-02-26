@@ -1,13 +1,9 @@
 package main
 
 import (
-	"log"
-	
-	"github.com/amirhnajafiz/chat-rtc/internal/app"
+	"github.com/amirhnajafiz/chat-rtc/internal"
 )
 
 func main() {
-	log.Println("starting app on port 5000 ...")
-	
-	app.New()
+	internal.NewApp()
 }
