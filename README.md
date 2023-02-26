@@ -36,15 +36,7 @@ Run the app on port ```5000```:
 ### Docker
 
 ```Dockerfile
-FROM golang:1.19-alpine
 
-COPY . .
-
-RUN go build -o main
-
-EXPOSE 5000
-
-CMD ./main
 ```
 
 ```shell
