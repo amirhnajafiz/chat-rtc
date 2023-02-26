@@ -35,6 +35,18 @@ func (h *HandlerV2) Websocket(c *websocket.Conn) {
 		err         error
 	)
 
+	go func() {
+		for {
+			data := <-h.Channel
+
+			if err = c.WriteMessage(data.MessageType, data.Bytes); err != nil {
+				log.Println("[FAIL] write:\n", err)
+
+				continue
+			}
+		}
+	}()
+
 	for {
 		if messageType, bytes, err = c.ReadMessage(); err != nil {
 			log.Println("[FAIL] read:\n", err)
@@ -42,10 +54,11 @@ func (h *HandlerV2) Websocket(c *websocket.Conn) {
 			continue
 		}
 
-		if err = c.WriteMessage(messageType, bytes); err != nil {
-			log.Println("[FAIL] write:\n", err)
-
-			continue
+		data := protocol.Packet{
+			MessageType: messageType,
+			Bytes:       bytes,
 		}
+
+		h.Channel <- data
 	}
 }
