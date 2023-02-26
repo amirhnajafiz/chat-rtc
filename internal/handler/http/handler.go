@@ -1,6 +1,8 @@
 package http
 
 import (
+	"github.com/gofiber/websocket/v2"
+	"log"
 	"net/http"
 
 	"github.com/amirhnajafiz/chat-rtc/internal/handler/socket"
@@ -18,5 +20,29 @@ func (h *Handler) Health(c *gin.Context) {
 func (h *Handler) OpenSocket(c *gin.Context) {
 	if err := h.WS.Melody.HandleRequest(c.Writer, c.Request); err != nil {
 		_ = c.Error(err)
+	}
+}
+
+type HandlerV2 struct{}
+
+func (h *HandlerV2) Websocket(c *websocket.Conn) {
+	var (
+		messageType int
+		bytes       []byte
+		err         error
+	)
+
+	for {
+		if messageType, bytes, err = c.ReadMessage(); err != nil {
+			log.Println("[FAIL] read:\n", err)
+
+			continue
+		}
+
+		if err = c.WriteMessage(messageType, bytes); err != nil {
+			log.Println("[FAIL] write:\n", err)
+
+			continue
+		}
 	}
 }
