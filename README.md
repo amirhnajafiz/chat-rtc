@@ -1,8 +1,4 @@
-<h1 align="center">
-    Chat RTC
-</h1>
-
-<br />
+# Chat RTC
 
 In this project we are going to use ```fiber``` websockets and Golang
 ```channels``` to create a Real Time Server in order to make
